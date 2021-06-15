@@ -15,15 +15,15 @@ with open('input.csv', 'r') as r_file:
         for row in readerCRP:
                 if (row['calling phone']) == str(variant):
                     file_writer.writerow(row)
-        with open(output_filename, 'r') as s_file:
-            readerCRP = csv.DictReader(s_file, delimiter=';', fieldnames=['calling phone', 'receiving phone', 'date', 'price'])
-            for row in readerCRP:
-                fullprice = fullprice + int(row['price'])
-                calls[row['receiving phone']] = calls.get(row['receiving phone'], 0) + 1
-                for k, v in calls.items():
-                    if v > max_call:
-                        max_number = k
-                        max_call = v
-                        print('Цена за звонки: %s' % fullprice)
-                        print('Наиболее частый вызываемый номер: %s' % max_number)
-                        print('Количество звонков часто вызываемого номера: %s' % max_call)
+    with open(output_filename, 'r') as s_file:
+        readerCRP = csv.DictReader(s_file, delimiter=';', fieldnames=['calling phone', 'receiving phone', 'date', 'price'])
+        for row in readerCRP:
+            fullprice = fullprice + int(row['price'])
+            calls[row['receiving phone']] = calls.get(row['receiving phone'], 0) + 1
+            for k, v in calls.items():
+                if v > max_call:
+                    max_number = k
+                    max_call = v
+                    print('Цена за звонки: %s' % fullprice)
+                    print('Наиболее частый вызываемый номер: %s' % max_number)
+                    print('Количество звонков часто вызываемого номера: %s' % max_call)
